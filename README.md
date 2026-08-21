@@ -50,6 +50,22 @@ LLM
  v
 Investigation result
 
+
+
+REASON
+  ↓
+ACT → Tool
+  ↓
+OBSERVE
+  ↓
+REASON
+  ↓
+ACT → Another Tool
+  ↓
+OBSERVE
+  ↓
+FINAL ANSWER
+
 ## Architecture
 
 User -> OpenAI LLM -> check_service() -> Docker Desktop
@@ -170,3 +186,12 @@ FINAL RESPONSE
 
 This is a learning/demo project. It investigates only; it does not restart,
 delete, or modify containers and does not claim a root cause without evidence.
+
+
+
+
+<img width="522" height="238" alt="image" src="https://github.com/user-attachments/assets/01f40e94-ca76-4b2a-8a7b-b9890a80df95" />
+
+<img width="530" height="264" alt="image" src="https://github.com/user-attachments/assets/25231697-c042-499e-88cc-9352f0e30044" />
+
+
