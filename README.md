@@ -273,8 +273,66 @@ orders-nginx
 admin@NewLearning#docker ps -a            
 CONTAINER ID   IMAGE                           COMMAND                  CREATED         STATUS                      PORTS                                     NAMES
 c38aaf66b518   nginx:alpine                    "/docker-entrypoint.…"   5 minutes ago   Up 5 minutes                0.0.0.0:8082->80/tcp, [::]:8082->80/tcp   payments-nginx
-72b0e07cb081   nginx:alpine                    "/docker-entrypoint.…"   5 minutes ago   Exited (0) 5 seconds ago                                              orders-nginx
+72b0e07cb081   nginx:alpine                    "/docker-entrypoint.…"   5 minutes ago   Exited (0) 5 seconds ago  orders-nginx
 8ccc835c9400   moby/buildkit:buildx-stable-1   "/usr/bin/buildkitd-…"   4 months ago    Exited (137) 4 months ago                                             buildx_buildkit_serene_euler0
 admin@NewLearning#docker inspect orders-nginx --format '{{.State.Status}} | ExitCode={{.State.ExitCode}}'
 exited | ExitCode=0
+
+admin@NewLearning#python3 -c "import openai; print(openai.__version__)"
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import openai; print(openai.__version__)
+    ^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'openai'
+admin@NewLearning#pip3 install -r requirements.txt
+Collecting openai>=1.0.0 (from -r requirements.txt (line 1))
+  Downloading openai-3.3.1-py3-none-any.whl.metadata (41 kB)
+Collecting anyio<5,>=4.10.0 (from openai>=1.0.0->-r requirements.txt (line 1))
+  Downloading anyio-4.14.2-py3-none-any.whl.metadata (4.6 kB)
+Collecting httpx2<3,>=2.7.0 (from openai>=1.0.0->-r requirements.txt (line 1))
+  Downloading httpx2-2.12.0-py3-none-any.whl.metadata (9.5 kB)
+Collecting jiter<1,>=0.16.0 (from openai>=1.0.0->-r requirements.txt (line 1))
+  Downloading jiter-0.16.0-cp314-cp314-macosx_11_0_arm64.whl.metadata (5.2 kB)
+Collecting pydantic!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.*,<3,>=1.10.13 (from openai>=1.0.0->-r requirements.txt (line 1))
+  Downloading pydantic-2.13.4-py3-none-any.whl.metadata (109 kB)
+Collecting sniffio (from openai>=1.0.0->-r requirements.txt (line 1))
+  Downloading sniffio-1.3.1-py3-none-any.whl.metadata (3.9 kB)
+Collecting typing-extensions<5,>=4.14 (from openai>=1.0.0->-r requirements.txt (line 1))
+  Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting idna>=2.8 (from anyio<5,>=4.10.0->openai>=1.0.0->-r requirements.txt (line 1))
+  Downloading idna-3.19-py3-none-any.whl.metadata (9.2 kB)
+Collecting httpcore2==2.12.0 (from httpx2<3,>=2.7.0->openai>=1.0.0->-r requirements.txt (line 1))
+  Downloading httpcore2-2.12.0-py3-none-any.whl.metadata (25 kB)
+Collecting truststore>=0.10 (from httpx2<3,>=2.7.0->openai>=1.0.0->-r requirements.txt (line 1))
+  Downloading truststore-0.10.4-py3-none-any.whl.metadata (4.4 kB)
+Collecting h11>=0.16 (from httpcore2==2.12.0->httpx2<3,>=2.7.0->openai>=1.0.0->-r requirements.txt (line 1))
+  Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+Collecting annotated-types>=0.6.0 (from pydantic!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.*,<3,>=1.10.13->openai>=1.0.0->-r requirements.txt (line 1))
+  Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+Collecting pydantic-core==2.46.4 (from pydantic!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.*,<3,>=1.10.13->openai>=1.0.0->-r requirements.txt (line 1))
+  Downloading pydantic_core-2.46.4-cp314-cp314-macosx_11_0_arm64.whl.metadata (6.6 kB)
+Collecting typing-inspection>=0.4.2 (from pydantic!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.*,<3,>=1.10.13->openai>=1.0.0->-r requirements.txt (line 1))
+  Downloading typing_inspection-0.4.4-py3-none-any.whl.metadata (2.6 kB)
+Downloading openai-3.3.1-py3-none-any.whl (1.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.7/1.7 MB 2.0 MB/s  0:00:00
+Downloading anyio-4.14.2-py3-none-any.whl (125 kB)
+Downloading httpx2-2.12.0-py3-none-any.whl (95 kB)
+Downloading httpcore2-2.12.0-py3-none-any.whl (83 kB)
+Downloading jiter-0.16.0-cp314-cp314-macosx_11_0_arm64.whl (308 kB)
+Downloading pydantic-2.13.4-py3-none-any.whl (472 kB)
+Downloading pydantic_core-2.46.4-cp314-cp314-macosx_11_0_arm64.whl (2.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 891.1 kB/s  0:00:02
+Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+Downloading idna-3.19-py3-none-any.whl (68 kB)
+Downloading truststore-0.10.4-py3-none-any.whl (18 kB)
+Downloading typing_inspection-0.4.4-py3-none-any.whl (14 kB)
+Downloading sniffio-1.3.1-py3-none-any.whl (10 kB)
+Installing collected packages: typing-extensions, truststore, sniffio, jiter, idna, h11, annotated-types, typing-inspection, pydantic-core, httpcore2, anyio, pydantic, httpx2, openai
+Successfully installed annotated-types-0.8.0 anyio-4.14.2 h11-0.16.0 httpcore2-2.12.0 httpx2-2.12.0 idna-3.19 jiter-0.16.0 openai-3.3.1 pydantic-2.13.4 pydantic-core-2.46.4 sniffio-1.3.1 truststore-0.10.4 typing-extensions-4.16.0 typing-inspection-0.4.4
+
+[notice] A new release of pip is available: 25.2 -> 26.2.1
+[notice] To update, run: pip3 install --upgrade pip
+admin@NewLearning#
 
