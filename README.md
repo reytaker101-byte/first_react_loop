@@ -189,6 +189,80 @@ delete, or modify containers and does not claim a root cause without evidence.
 
 
 
+admin@NewLearning#git clone https://github.com/reytaker101-byte/first_react_loop.git
+Cloning into 'first_react_loop'...
+remote: Enumerating objects: 34, done.
+remote: Counting objects: 100% (34/34), done.
+remote: Compressing objects: 100% (28/28), done.
+remote: Total 34 (delta 7), reused 0 (delta 0), pack-reused 0 (from 0)
+Receiving objects: 100% (34/34), 16.67 KiB | 656.00 KiB/s, done.
+Resolving deltas: 100% (7/7), done.
+admin@NewLearning#ls
+first_react_loop
+admin@NewLearning#cd first_react_loop 
+admin@NewLearning#ls
+README.md               agent.py                docker-compose.yml      nginx                   requirements.txt        tools.py
+admin@NewLearning#docker compose config
+name: first_react_loop
+services:
+  orders-nginx:
+    container_name: orders-nginx
+    image: nginx:alpine
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 80
+        published: "8081"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /Users/dollyd/react/first_react_loop/nginx/orders.html
+        target: /usr/share/nginx/html/index.html
+        read_only: true
+        bind:
+          create_host_path: true
+  payments-nginx:
+    container_name: payments-nginx
+    image: nginx:alpine
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 80
+        published: "8082"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /Users/dollyd/react/first_react_loop/nginx/payments.html
+        target: /usr/share/nginx/html/index.html
+        read_only: true
+        bind:
+          create_host_path: true
+networks:
+  default:
+    name: first_react_loop_default
+admin@NewLearning#docker compose up -d
+[+] Running 10/10
+ ✔ orders-nginx Pulled                                                                                                                                                13.3s 
+   ✔ c3ee22b57f6b Pull complete                                                                                                                                        7.1s 
+   ✔ 3be296cd3c97 Pull complete                                                                                                                                        3.9s 
+   ✔ 5de55e5ef9c0 Pull complete                                                                                                                                        5.7s 
+   ✔ 1b000889fffe Pull complete                                                                                                                                        4.5s 
+   ✔ e6cb77a8803a Pull complete                                                                                                                                        6.1s 
+   ✔ ed0e37fc3a99 Pull complete                                                                                                                                        3.9s 
+   ✔ 7feeb37758e4 Pull complete                                                                                                                                        4.2s 
+   ✔ aca9e7c5ccc1 Pull complete                                                                                                                                        6.2s 
+ ✔ payments-nginx Pulled                                                                                                                                              13.5s 
+[+] Running 3/3
+ ✔ Network first_react_loop_default  Created                                                                                                                           0.0s 
+ ✔ Container orders-nginx            Started                                                                                                                           0.6s 
+ ✔ Container payments-nginx          Started                                                                                                                           0.6s 
+admin@NewLearning#docker ps
+CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS         PORTS                                     NAMES
+c38aaf66b518   nginx:alpine   "/docker-entrypoint.…"   4 seconds ago   Up 4 seconds   0.0.0.0:8082->80/tcp, [::]:8082->80/tcp   payments-nginx
+72b0e07cb081   nginx:alpine   "/docker-entrypoint.…"   4 seconds ago   Up 4 seconds   0.0.0.0:8081->80/tcp, [::]:8081->80/tcp   orders-nginx
+
 
 <img width="522" height="238" alt="image" src="https://github.com/user-attachments/assets/01f40e94-ca76-4b2a-8a7b-b9890a80df95" />
 
