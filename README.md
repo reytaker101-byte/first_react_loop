@@ -263,6 +263,14 @@ CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS   
 c38aaf66b518   nginx:alpine   "/docker-entrypoint.…"   4 seconds ago   Up 4 seconds   0.0.0.0:8082->80/tcp, [::]:8082->80/tcp   payments-nginx
 72b0e07cb081   nginx:alpine   "/docker-entrypoint.…"   4 seconds ago   Up 4 seconds   0.0.0.0:8081->80/tcp, [::]:8081->80/tcp   orders-nginx
 
+admin@NewLearning#docker stop orders-nginx
+orders-nginx
+admin@NewLearning#docker ps -a            
+CONTAINER ID   IMAGE                           COMMAND                  CREATED         STATUS                      PORTS                                     NAMES
+c38aaf66b518   nginx:alpine                    "/docker-entrypoint.…"   5 minutes ago   Up 5 minutes                0.0.0.0:8082->80/tcp, [::]:8082->80/tcp   payments-nginx
+72b0e07cb081   nginx:alpine                    "/docker-entrypoint.…"   5 minutes ago   Exited (0) 5 seconds ago                                              orders-nginx
+8ccc835c9400   moby/buildkit:buildx-stable-1   "/usr/bin/buildkitd-…"   4 months ago    Exited (137) 4 months ago                                             buildx_buildkit_serene_euler0
+
 
 <img width="522" height="238" alt="image" src="https://github.com/user-attachments/assets/01f40e94-ca76-4b2a-8a7b-b9890a80df95" />
 
