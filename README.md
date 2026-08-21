@@ -336,3 +336,10 @@ Successfully installed annotated-types-0.8.0 anyio-4.14.2 h11-0.16.0 httpcore2-2
 [notice] To update, run: pip3 install --upgrade pip
 admin@NewLearning#
 
+admin@NewLearning#python3 -c "import openai; print('OpenAI SDK:', openai.__version__)"
+OpenAI SDK: 3.3.1
+admin@NewLearning#export OPENAI_API_KEY="OpenAI API Key"
+admin@NewLearning#python3 -c "import os; print('API key configured:', bool(os.getenv('OPENAI_API_KEY')))"
+API key configured: True
+admin@NewLearning#
+
