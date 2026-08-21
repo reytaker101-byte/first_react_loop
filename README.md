@@ -21,15 +21,34 @@ next investigation steps.
 
 ## What it demonstrates
 
-- ReAct loop: Reason -> Tool Action -> Observation -> Repeat
-- OpenAI Function Calling
-- Tool schema
-- Docker inspection from Python
-- Service-to-container discovery using Docker labels
-- Container status and health
-- HTTP reachability
-- Recent logs
-- Missing-service handling without guessing
+User
+ |
+ | "Investigate checkout service"
+ v
+LLM
+ |
+ | Tool call
+ v
+check_service("checkout")
+ |
+ v
+Docker
+ |
+ +--> checkout-nginx
+ |
+ +--> Is it running?
+ +--> Health status?
+ +--> HTTP responding?
+ +--> Recent logs?
+ |
+ v
+Evidence
+ |
+ v
+LLM
+ |
+ v
+Investigation result
 
 ## Architecture
 
